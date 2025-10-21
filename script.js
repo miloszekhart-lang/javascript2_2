@@ -20,6 +20,7 @@
     fetch('https://jsonplaceholder.typicode.com/posts')
       .then(response => response.json())
       .then(array => {
+        console.log("Pierwszy post:", array[0].title)
         const listItems = array.map(post => `
           <li class="post">
             <strong> ${post.title}</strong><br>
