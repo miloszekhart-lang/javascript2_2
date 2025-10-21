@@ -15,7 +15,7 @@
   })
 
   cw1.addEventListener("click", async function() {
-    answer.textContent = "Loading..."
+    loader.classList.remove("hidden");
     await new Promise(resolve => setTimeout(resolve, 1000));
     fetch('https://jsonplaceholder.typicode.com/posts')
       .then(response => response.json())
@@ -29,10 +29,16 @@
         `).join('');
         answer.innerHTML = `<ul>${listItems}</ul>`;
       })
+      .catch(error => {
+        answer.innerHTML = `<p>Error: ${error.message}</p>`;
+      })
+      .finally(() => {
+        loader.classList.add("hidden");
+      })
   })
 
   cw2.addEventListener("click", async function() {
-    answer.textContent = "Loading..."
+    loader.classList.remove("hidden");
     await new Promise(resolve => setTimeout(resolve, 1000));
     fetch('https://jsonplaceholder.typicode.com/posts/1')
       .then(response => response.json())
@@ -43,11 +49,16 @@
         const listItems = `<li><strong>${title}</strong><p>${body}</p></li>`;
         answer.innerHTML = `<ul>${listItems}</ul>`;
       })
+      .catch(error => {
+        answer.innerHTML = `<p>Error: ${error.message}</p>`;
+      })
+      .finally(() => {
+        loader.classList.add("hidden");
+      })
   })
 
   cw3.addEventListener("click", function() {
     answer.textContent = "Processing...";
-
     fetch('https://jsonplaceholder.typicode.com/posts', {
       method: 'POST',
       headers: {
@@ -66,7 +77,7 @@
       })
       .catch(error => {
         answer.innerHTML = `<p>Error: ${error.message}</p>`;
-      });
+      })
   });
 
 })();
