@@ -1,13 +1,11 @@
 entrypoint = "index.html"
 
 hidden = [".config"]
-
-modules = ["web", "python-3.11"]
+modules = ["nodejs-20", "web"]
 
 
 [nix]
-
-channel = "stable-23_11"
+channel = "stable-25_05"
 
 
 [deployment]
@@ -58,19 +56,17 @@ waitForPort = 5000
 
 outputType = "webview"
 
-
 [[ports]]
-
 localPort = 5000
-
 externalPort = 80
 
+[[ports]]
+localPort = 40667
+externalPort = 3000
 
 [[ports]]
-
-localPort = 40667
-
-externalPort = 3000
+localPort = 41197
+externalPort = 3001
 
 [agent]
 expertMode = true
